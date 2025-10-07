@@ -58,15 +58,23 @@ The Vitest suite covers the core `StoryService` logic, ensuring submissions, vot
    npm run build
    ```
 
-3. Launch a live playtest post in your Devvit sandbox subreddit:
+3. Configure the subreddit you want to use for playtesting by setting an env var (once per machine):
+
+   ```bash
+   echo MYTHICLOOM_PLAYTEST_SUBREDDIT=mythicloom_dev >> .env
+   ```
+
+   Replace `mythicloom_dev` with your own small, private sandbox community (under 50 members). The helper script will also respect the `DEVVIT_PLAYTEST_SUBREDDIT` env var if you already use that elsewhere.
+
+4. Launch a live playtest post in your Devvit sandbox subreddit:
 
    ```bash
    npm run devvit:playtest
    ```
 
-   The Devvit CLI will print a `reddit.com/r/<app>_dev?playtest=<slug>` URL. Open it, click **Launch App**, and verify the MythicLoom UI inside Reddit.
+   The script builds the app, injects your configured subreddit, and prints a launch URL of the form `https://www.reddit.com/r/<subreddit>/?playtest=<slug>`. Open that exact link (desktop Reddit works best), then use the right-hand **Apps** panel and click **Launch App** to pop the MythicLoom UI inside Reddit.
 
-4. When you are ready to submit for review, trigger the launch workflow (after a final build):
+5. When you are ready to submit for review, trigger the launch workflow (after a final build):
 
    ```bash
    npm run devvit:launch
@@ -76,15 +84,17 @@ The Vitest suite covers the core `StoryService` logic, ensuring submissions, vot
 
 ## Environment variables
 
-| Variable                 | Purpose                                                                                                     |
-| ------------------------ | ----------------------------------------------------------------------------------------------------------- |
-| `MYTHICLOOM_ADMIN_TOKEN` | Shared secret that grants access to `/api/story/finalize`. Set this for cron jobs or manual admin triggers. |
-| `PORT`                   | Optional override for the Express server port (default: `4000`).                                            |
+| Variable                        | Purpose                                                                                                     |
+| ------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| `MYTHICLOOM_ADMIN_TOKEN`        | Shared secret that grants access to `/api/story/finalize`. Set this for cron jobs or manual admin triggers. |
+| `MYTHICLOOM_PLAYTEST_SUBREDDIT` | The small sandbox subreddit where `npm run devvit:playtest` installs the app. Use the bare name (no `r/`).  |
+| `PORT`                          | Optional override for the Express server port (default: `4000`).                                            |
 
 Create a `.env` file during local development:
 
 ```
 MYTHICLOOM_ADMIN_TOKEN=change-me
+MYTHICLOOM_PLAYTEST_SUBREDDIT=mythicloom_dev
 PORT=4000
 ```
 

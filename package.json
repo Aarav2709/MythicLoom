@@ -11,7 +11,7 @@
     "test": "vitest run",
     "start": "node dist/server/index.js",
     "devvit:login": "npx devvit login",
-    "devvit:playtest": "npm run build && npx devvit playtest",
+  "devvit:playtest": "node scripts/devvit-playtest.js",
     "devvit:launch": "npm run build && npx devvit launch"
   },
   "dependencies": {
