@@ -1,0 +1,16 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "CommonJS",
+    "target": "ES2021",
+    "lib": ["ES2021"],
+    "outDir": "dist/server",
+    "rootDir": "src",
+    "noEmit": false,
+    "isolatedModules": false,
+    "paths": {
+        "@shared/*": ["src/shared/*"]
+    }
+  },
+  "include": ["src/server", "src/shared"]
+}

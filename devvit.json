@@ -1,0 +1,27 @@
+{
+  "name": "mythicloom",
+  "version": "0.1.0",
+  "description": "Community-built choose-your-own adventure where MythicLoom promotes the top branch into canon each day.",
+  "marketingAssets": {
+    "icon": "public/icon.png"
+  },
+  "post": {
+    "dir": "dist/client",
+    "entrypoints": {
+      "default": {
+        "entry": "index.html",
+        "height": "tall"
+      }
+    }
+  },
+  "server": {
+    "dir": "dist/server",
+    "entry": "server/index.js"
+  },
+  "permissions": {
+    "reddit": {
+      "enable": true,
+      "scope": "user"
+    }
+  }
+}
